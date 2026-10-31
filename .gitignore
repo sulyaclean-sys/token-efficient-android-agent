@@ -1,0 +1,13 @@
+# generated per device by scripts/screen.sh
+.screen.txt
+
+# python
+__pycache__/
+*.pyc
+
+# local captures / outputs
+shots/
+AndroidAgentDevkit/
+*.orig
+.DS_Store
+*.log
