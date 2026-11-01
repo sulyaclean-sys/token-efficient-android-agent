@@ -31,7 +31,8 @@ Two rules everything here is built around:
 ## Quick start
 
 ```bash
-git clone <this repo> && cd android-agent-devkit
+git clone https://github.com/sulyaclean-sys/token-efficient-android-agent.git
+cd token-efficient-android-agent
 pip install -r requirements.txt
 python3 scripts/selftest.py          # -> OK selftest 11/11
 
@@ -60,15 +61,23 @@ python3 scripts/zoom.py $SHOT/home.png --from-dump $SHOT/home.xml --text "12.34"
 Feeding the shrunk JPEG to the model is the *last* resort: dump-based lookups are
 plain text, cost ~100 tokens, and cannot be misread.
 
-## Publishing
+## Use it from another project
+
+Nothing is installed globally - every tool is a single file you can point at by
+absolute path. Either clone the repo somewhere your agent can read, or copy just
+the pieces you need into your own skill/tools directory:
 
 ```bash
-cd android-agent-devkit && git init && git add . && git commit -m 'android-agent-devkit: initial public release'
-git remote add origin git@github.com:<you>/android-agent-devkit.git && git push -u origin main
+git clone https://github.com/sulyaclean-sys/token-efficient-android-agent.git
+cp -r token-efficient-android-agent/scripts ~/.claude/skills/android-agent-devkit/
 ```
 
-`.gitignore` already keeps `.screen.txt` (device-specific) and local captures out.
-Before the first push, skim `docs/porting-notes.md` for the leak checklist.
+`SKILL.md` is the agent-facing description (one line per tool); `docs/` explains
+why the tools are shaped that way. `.gitignore` already keeps `.screen.txt`
+(device-specific) and local captures out, so a fork is safe to publish as-is.
+
+MIT licensed: use it, fork it, ship it in your own product. Issues and PRs are
+welcome; the only ask is that you keep `LICENSE` with any copy.
 
 ## Verify your install (10 seconds)
 
